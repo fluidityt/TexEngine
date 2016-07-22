@@ -191,14 +191,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
   
     func enter(OPTSELECT os:Int) {
    
-    var same_scene 		= true							// Temp vars
-    var same_clip 		= true   
-        
-    var scene_info 		= GD.scn_scene_info  			  
-    var clip_info		= GD.scn_clip_info
-    var next_scene 		= GD.scn_next_scene
-    var next_clip 		= GD.scn_next_clip
-
+    
     
     func say(text: String){
             print(text)
@@ -209,14 +202,13 @@ class MainViewController: UIViewController, UITextFieldDelegate {
            print("LSC")
             // sub-sub funcs
             func setStage( scn:Int,_ clp:Int) 	{
-                next_scene = LoadSceneCommands(scn)
-                next_clip = clp
-                same_scene = false;                same_clip = false                }
+                GD.scn_next_scene = LoadSceneCommands(scn)
+                GD.scn_next_clip = clp
+				}
             
-            func setNextClipTo(number clp: Int){
-                next_clip = clp
-                same_clip = false}
-                
+		func setNextClipTo(number clp: Int){
+			GD.scn_next_clip = clp
+		}
             
             switch(scn) {
                 
@@ -226,7 +218,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
                 	
                     say("0 set")
                     		
-                    clip_info = [
+                    GD.scn_clip_info = [
                        
 						// clip intro
                         0: {
@@ -242,7 +234,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
                     
                     say("1 set")
 					
-                    clip_info = [
+                    GD.scn_clip_info = [
                         
                         // clip intro
                         0: {
@@ -274,14 +266,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 	
 		}
 		
-		clip_info[next_clip]!()
+		GD.scn_clip_info[GD.scn_next_clip]!()
     
-		GD.scn_next_clip = next_clip
-		GD.scn_clip_info = clip_info
 		
-        func testPlayClip(clip_num:Int) 				{ clip_info[clip_num]!() }
-    
-
     }
     
     
