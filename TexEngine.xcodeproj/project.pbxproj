@@ -20,6 +20,7 @@
 		C1231E891D41AEA4001C7228 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1231E8B1D41AEA4001C7228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = TexEngine/Info.plist; sourceTree = "<group>"; };
 		C1231E911D41B092001C7228 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ../MainViewController.swift; sourceTree = "<group>"; };
+		C1231E951D41E592001C7228 /* tester.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = tester.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +37,7 @@
 		C1231E731D41AEA4001C7228 = {
 			isa = PBXGroup;
 			children = (
+				C1231E951D41E592001C7228 /* tester.playground */,
 				C1231E7D1D41AEA4001C7228 /* Products */,
 				C1231E861D41AEA4001C7228 /* Assets.xcassets */,
 				C1231E8B1D41AEA4001C7228 /* Info.plist */,

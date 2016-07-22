@@ -209,36 +209,34 @@ struct CharData {
 struct GameData {
 
 		var SCN_next_clip = [0: {}]
-        var SCN_next_scene = [1: {
-                print("ns[1]: scene 1 set")
-                GD.SCN_next_clip = [1: {
-                print("nc[1]: playing scene 1, clip 1")} ]}()]
+        var SCN_next_scene = [0: ()]
     
         var SCN_superNC = 0
-    
-    init(){}
+ 
 }; var GD = GameData()
 
 struct SceneFuncs {
     
+   func enter(ns: [Int: ()] = GD.SCN_next_scene, nc: [Int: ()->()] = GD.SCN_next_clip) {
     
-    func enter() {
     
-        var next_scene = GD.SCN_next_scene
-        var next_clip = [0: {}]
-        var superNC = 0
-        
-        func playClip(clp:Int) 				{ next_clip[clp]!() }
+    
+        func playClip(clp:Int) 				{ nc[clp]!() }
+    
         func test()			  				{
-            next_scene = LoadSceneCommands(0)
-            next_clip[0]!()
-            next_scene = LoadSceneCommands(1)
-            next_clip[1]!()}
+            GD.SCN_next_scene = LoadSceneCommands(0)
+            GD.SCN_next_clip[0]!()
+            GD.SCN_next_scene = LoadSceneCommands(1)
+            GD.SCN_next_clip[1]!()}
         
         
         
         /// loadScene ///
         func LoadSceneCommands (scn:Int) -> [Int: ()] {
+           
+            var next_scene 	= ns
+        	var next_clip	= nc
+       		var superNC 	= 0
             
             func nextClipIs(number clp:Int)		{ superNC = clp }
             func setStage( scn:Int,_ clp:Int) 	{ next_scene = LoadSceneCommands(scn);  superNC = clp }
