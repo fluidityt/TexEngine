@@ -8,9 +8,10 @@
 
 import UIKit
 
+var firstrun = true
 
-
-///<##> MVC  ////////////////////////////////////////////////////
+ ///<##> MVC //////////////////////////////////////////////////
+// MARK: - MVC -
 class MainViewController: UIViewController, UITextFieldDelegate {
     
     lazy var textField: UITextField! = {
@@ -185,34 +186,34 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(label)
   }
     
-   ///Mainloop
-   func enter(OPTSELECT os:Int) {
-    
-    // BECAUSE I CAN'T USE == ...FFS!
-    var same_scene = true;    var same_clip = true
-    
-    // Temp vars
-    var scene 	= GD.scn_scene
-    var clip	= GD.scn_clip
-    
-    var next_scene = GD.scn_next_scene
-    var next_clip = GD.scn_next_clip
+     ///<##> Mainloop 
+    // MARK: - MAIN LOOP -
+  
+    func enter(OPTSELECT os:Int) {
+   
+    var same_scene 		= true							// Temp vars
+    var same_clip 		= true   
+        
+    var scene_info 		= GD.scn_scene_info  			  
+    var clip_info		= GD.scn_clip_info
+    var next_scene 		= GD.scn_next_scene
+    var next_clip 		= GD.scn_next_clip
 
     
     func say(text: String){
             print(text)
             label.text = text}
     
-        /// loadScene ///
-        func LoadSceneCommands (scn:Int) -> [Int: ()] {
-           
+    
+    func LoadSceneCommands (scn:Int) -> [Int: ()] {
+           print("LSC")
             // sub-sub funcs
             func setStage( scn:Int,_ clp:Int) 	{
                 next_scene = LoadSceneCommands(scn)
                 next_clip = clp
                 same_scene = false;                same_clip = false                }
             
-            func nextClip(willbe clp: Int){
+            func setNextClipTo(number clp: Int){
                 next_clip = clp
                 same_clip = false}
                 
@@ -220,47 +221,65 @@ class MainViewController: UIViewController, UITextFieldDelegate {
             switch(scn) {
                 
             // scene intro
-            case 0:    return [0: {
-                
-                // clipz
-                clip = [0: {
-                    
-                    
-                    
-                    }
-                ]}()]
+            case 0:    
+                return [0: {
+                	
+                    say("0 set")
+                    		
+                    clip_info = [
+                       
+						// clip intro
+                        0: {
+                            	say("clip 0 activated")
+                           		setStage(1, 0)
+                        }
+                    ]}()]
                 
             // scene 1
             case 1:
-            
-              return [1: {
                 
-                
-                clip = [
+                return [1: {
                     
-                    // clip into
-                    0: {
+                    say("1 set")
+					
+                    clip_info = [
                         
+                        // clip intro
+                        0: {
+                            	say("s1 c0 playing")
+                           		setNextClipTo(number: 1)
+							
+							
+                        },
                         
-                    },
-                    
-                    // clip 1
-                    1: {
+                        // clip 1
+                        1: {
+                            	say("s1 c1 playing")
+								setNextClipTo(number: 0)
+                        },
                         
-                    },
-                    
-                ]
-                }()]
+                    ]
+                    }()]
                 
             // scene fail
             default: return [-1: print("no scene")]}	// Use -1 for EC purposes?
             
     }
     
+        
     
- 
+ 	if firstrun == true {
+		GD.scn_scene_info = LoadSceneCommands(0);
+		firstrun = false;
+	
+		}
+		
+		clip_info[next_clip]!()
     
-        func testPlayClip(clip_num:Int) 				{ clip[clip_num]!() }
+		GD.scn_next_clip = next_clip
+		GD.scn_clip_info = clip_info
+		
+        func testPlayClip(clip_num:Int) 				{ clip_info[clip_num]!() }
     
 
     }
@@ -268,8 +287,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     
 }
 
+ ///<##> Other stuff ////////////////////////////////////////////////
+// MARK: - OTHER -
 
-/// Enums  //////////////////////////////////////////////////
 enum PossibleChars {	//master list
     case Edye, Teyso }
 
@@ -287,13 +307,15 @@ struct CharData {
 
 
 struct GameData {
-        var scn_scene = [0: ()]
+        var scn_scene_info = [0: ()]
 
-		var scn_clip = [0: {}]
+		var scn_clip_info = [0: {}]
     
         var scn_next_scene = [0: ()]
     	var scn_next_clip = 0
     
+    	var scn_current_scene = -1
+    	var scn_current_clip  = -1
     
         var SCN_superNC = 0
  
