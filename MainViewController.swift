@@ -8,7 +8,9 @@
 
 import UIKit
 
-///<##> MVC////////////////////////////////////////////////////
+
+
+///<##> MVC  ////////////////////////////////////////////////////
 class MainViewController: UIViewController, UITextFieldDelegate {
     
     lazy var textField: UITextField! = {
@@ -27,7 +29,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         view.setTitle("Press Me!", forState: .Normal)
         view.backgroundColor = UIColor.blueColor()
         return view
-    }()
+    }() 
     
     lazy var label: UILabel! = {
         let view = UILabel()
@@ -39,6 +41,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
     }()
     
     
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         // Dismisses the Keyboard by making the text field resign
@@ -48,12 +51,6 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         // returns false. Instead of adding a line break, the text
         // field resigns
         return false
-    }
-    
-    
-    
-    func buttonPressed() {
-        label.text = "Hello, \(textField.text!)"
     }
     
     override func updateViewConstraints() {
@@ -171,6 +168,11 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func buttonPressed() {
+        enter(OPTSELECT: 1)}
+    
+    
+    
     
     override func viewDidLoad() {
         
@@ -181,93 +183,121 @@ class MainViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(textField)
         view.addSubview(button)
         view.addSubview(label)
-        
+  }
+    
+   ///Mainloop
+   func enter(OPTSELECT os:Int) {
+    
+    // BECAUSE I CAN'T USE == ...FFS!
+    var same_scene = true;    var same_clip = true
+    
+    // Temp vars
+    var scene 	= GD.scn_scene
+    var clip	= GD.scn_clip
+    
+    var next_scene = GD.scn_next_scene
+    var next_clip = GD.scn_next_clip
+
+    
+    func say(text: String){
+            print(text)
+            label.text = text}
+    
+        /// loadScene ///
+        func LoadSceneCommands (scn:Int) -> [Int: ()] {
+           
+            // sub-sub funcs
+            func setStage( scn:Int,_ clp:Int) 	{
+                next_scene = LoadSceneCommands(scn)
+                next_clip = clp
+                same_scene = false;                same_clip = false                }
+            
+            func nextClip(willbe clp: Int){
+                next_clip = clp
+                same_clip = false}
+                
+            
+            switch(scn) {
+                
+            // scene intro
+            case 0:    return [0: {
+                
+                // clipz
+                clip = [0: {
+                    
+                    
+                    
+                    }
+                ]}()]
+                
+            // scene 1
+            case 1:
+            
+              return [1: {
+                
+                
+                clip = [
+                    
+                    // clip into
+                    0: {
+                        
+                        
+                    },
+                    
+                    // clip 1
+                    1: {
+                        
+                    },
+                    
+                ]
+                }()]
+                
+            // scene fail
+            default: return [-1: print("no scene")]}	// Use -1 for EC purposes?
+            
     }
     
+    
+ 
+    
+        func testPlayClip(clip_num:Int) 				{ clip[clip_num]!() }
+    
+
+    }
+    
+    
 }
+
 
 /// Enums  //////////////////////////////////////////////////
 enum PossibleChars {	//master list
     case Edye, Teyso }
 
 
-
-///<##> Scene List //////////////////////////////////////////////
-
-// STRUCTS
-
-
 struct CharData {
     
     var my_chars		 =							[PossibleChars.Edye]	//check boolways
     
-    mutating func filtrit(TYPZOR:PossibleChars) 	{ my_chars = my_chars.filter({$0 != $0}) }
-    func checkEdye() 								{ my_chars.contains(.Edye) ?
-        print("Oh shit it's Edye!") : print("nope")}
+    mutating func filtrit(TYPZOR:PossibleChars) 	{
+        my_chars = my_chars.filter({$0 != $0}) }
+    
+    func checkEdye() 								{
+        my_chars.contains(.Edye) ? print("Oh shit it's Edye!") : print("nope")}
 }
 
-struct GameData {
 
-		var SCN_next_clip = [0: {}]
-        var SCN_next_scene = [0: ()]
+struct GameData {
+        var scn_scene = [0: ()]
+
+		var scn_clip = [0: {}]
+    
+        var scn_next_scene = [0: ()]
+    	var scn_next_clip = 0
+    
     
         var SCN_superNC = 0
  
 }; var GD = GameData()
 
-struct SceneFuncs {
-    
-   func enter(ns: [Int: ()] = GD.SCN_next_scene, nc: [Int: ()->()] = GD.SCN_next_clip) {
-    
-    
-    
-        func playClip(clp:Int) 				{ nc[clp]!() }
-    
-        func test()			  				{
-            GD.SCN_next_scene = LoadSceneCommands(0)
-            GD.SCN_next_clip[0]!()
-            GD.SCN_next_scene = LoadSceneCommands(1)
-            GD.SCN_next_clip[1]!()}
-        
-        
-        
-        /// loadScene ///
-        func LoadSceneCommands (scn:Int) -> [Int: ()] {
-           
-            var next_scene 	= ns
-        	var next_clip	= nc
-       		var superNC 	= 0
-            
-            func nextClipIs(number clp:Int)		{ superNC = clp }
-            func setStage( scn:Int,_ clp:Int) 	{ next_scene = LoadSceneCommands(scn);  superNC = clp }
-            
-            switch(scn) {
-                
-            // scene none
-            case 0:    return [0: {
-                
-                print("ns[0]: GInc initialized")
-                
-                next_clip = [0: {
-                    
-                    print("nc[0]no scene, no clip, just inits")
-                    setStage(1,1)} ]}()]				// somehow this works... recursion?
-                
-            // scene 1
-            case 1:    return [1: {
-                
-                print("ns[1]: scene 1 set")
-                
-                next_clip = [1: {
-                    
-                    print("nc[1]: playing scene 1, clip 1")} ]}()]
-                
-            // scene fail
-            default: return [-1: print("no scene")]}	// Use -1 for EC purposes?
-        }
-        
-    }
-    
-    
-}
+
 
