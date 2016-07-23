@@ -8,6 +8,11 @@
 
 import UIKit
 
+var SL = SceneList()
+var GD = GameData()
+
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     

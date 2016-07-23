@@ -15,8 +15,17 @@ func debug(text:String,_ value:Any)
 	debug_total += 1
 	print("\(debug_total) \(text) \(value)")
 }
-
+/** 
+- parameters: 
+   - cubes: The cubes available for allocation
+  - people: The people that require cubes 
+*/
 var firstrun = true
+
+
+
+
+
 
 ///<##> MVC //////////////////////////////////////////////////
 // MARK: - MVC -
@@ -47,23 +56,11 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		return view
 	}() 	
 	
-	// label
-	lazy var label: UILabel! = {
-		let view = UILabel()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.text = "Super Fun Game!"
-		view.textAlignment = .Center
-		view.textColor = UIColor.whiteColor()
-		view.backgroundColor = UIColor.blackColor()
-	
-		view.adjustsFontSizeToFitWidth = true
-		
-		return view
-	}()
 	
 	
 	
 	
+	// uvc
 	override func updateViewConstraints() {
 		func button2Constraints() {
 			// Center button in Page View
@@ -99,7 +96,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				constant: 0.0)
 				.active = true
 		}
-			func buttonConstraints() {
+		func buttonConstraints() {
 			// Center button in Page View
 			NSLayoutConstraint(
 				item: button2,
@@ -133,11 +130,11 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				constant: 0.0)
 				.active = true
 		}
-
+		
 		func labelConstraints() {
 			// Center button in Page View
 			NSLayoutConstraint(
-				item: label,
+				item: GD.ux.label,
 				attribute: .CenterX,
 				relatedBy: .Equal,
 				toItem: view,
@@ -148,7 +145,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 			
 			// Set Width to be 80% of the Page View Width
 			NSLayoutConstraint(
-				item: label,
+				item: GD.ux.label,
 				attribute: .Width,
 				relatedBy: .Equal,
 				toItem: view,
@@ -159,7 +156,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 			
 			//hight
 			NSLayoutConstraint(
-				item: label,
+				item: GD.ux.label,
 				attribute: .Height,
 				relatedBy: .Equal,
 				toItem: view,
@@ -167,11 +164,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				multiplier: 0.7,
 				constant: 0.0)
 				.active = true
-			
-		}
 			// Set Y Position Relative to Bottom of Page View
 			NSLayoutConstraint(
-				item: label,
+				item: GD.ux.label,
 				attribute: .CenterY,
 				relatedBy: .Equal,
 				toItem: view,
@@ -179,6 +174,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				multiplier: 0.8,
 				constant: 0.0)
 				.active = true
+		}
+		
 		
 		buttonConstraints()
 		button2Constraints()
@@ -188,120 +185,43 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		
 	}
 	
+	
+	// button press
 	func buttonPressed() {
+		SL.doscene()
 		
-		button2.hidden = false
-		button.hidden = true
-		label.text = "Hi"
 	}
 	
 	func button2Pressed() {
-		
-		button2.hidden = true
-		button.hidden = false
-		label.text = "Bye"
+		SL.doscene()
 	}
 	
 	
 	
-	
+	// vdl
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
 		view.setNeedsUpdateConstraints()
 		view.addSubview(button2)
-		view.addSubview(label)
-				view.addSubview(button)
-
+		view.addSubview(GD.ux.label)
+		view.addSubview(button)
+		
 		
 		GD.scn.next_scene = 0
 		GD.scn.next_clip = 0
 		
 		button2.hidden = true
 	}
-	///DOSCENE¡///<##> 
-	func doscene() {
-		
-		var temp = GD.scn
-					
-		
-		// internal funcs
-		func say(text: String){
-			print(text)
-			label.text = text}
-		
-				
-		// let findNextScene = {}
-		
-		if(temp.next_scene > temp.current_scene) {			
-			switch(temp.next_scene) {
-				
-			// scene 0
-			case 0:    
-				say("0 set")
-				temp.scene_info = [
-					
-					// clip 0
-					0: {
-						say("clip 0 activated")
-						
-						temp.next_scene = 1
-						temp.next_clip = 0
-					}
-				]
-				
-			// scene 1
-			case 1:
-				
-				say("1 set")
-				
-				temp.scene_info = [
-					
-					// clip 0
-					0: {
-						say("S1   C0  ")
-						
-						temp.next_clip = 1					
-					},
-					
-					// clip 1
-					1: {
-						say("  S1  C1 ")
-						
-						temp.next_clip = 0					
-					}
-					
-				]
-				
-				
-				
-			// scene error
-			default: say("ERROR: no scene")	
-				
-			}
-			
-			
-		}
-		
-
-		
-		// Play next clip
-		temp.scene_info[temp.next_clip]!()
-		
-		
-		GD.scn = temp
-			
-		
-		say("leaving doscene \n")
-		
-	}
+	
+	
+	
+	
+	
 }
 
-///<##> Other stuff ////////////////////////////////////////////////
-// MARK: - OTHER -
 
-enum PossibleChars {	//master list
-	case Edye, Teyso }
+
 
 
 struct CharData {
@@ -316,19 +236,6 @@ struct CharData {
 }
 
 
-struct GameData {
-	
-	struct SceneStuff {
-		var current_scene = -1
-		var scene_info = [-1: {}]
-		
-		
-		var next_scene = -1
-		var next_clip = -1
-	}; var scn = SceneStuff()
-	
-	
-}; var GD = GameData()
-
-
+enum PossibleChars {	//master list
+	case Edye, Teyso }
 

@@ -11,16 +11,26 @@
 		C1231E871D41AEA4001C7228 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1231E861D41AEA4001C7228 /* Assets.xcassets */; };
 		C1231E8A1D41AEA4001C7228 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1231E881D41AEA4001C7228 /* LaunchScreen.storyboard */; };
 		C1231E931D41B092001C7228 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1231E911D41B092001C7228 /* MainViewController.swift */; };
+		C12AF23C1D433081006D43BB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C12AF23B1D433081006D43BB /* Default-568h@2x.png */; };
+		C12AF23E1D433666006D43BB /* random tester.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12AF23D1D433666006D43BB /* random tester.swift */; };
+		C12AF2401D434069006D43BB /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12AF23F1D434069006D43BB /* GameData.swift */; };
+		C12AF2421D434077006D43BB /* SceneList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12AF2411D434077006D43BB /* SceneList.swift */; };
+		C12AF2441D434F1D006D43BB /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12AF2431D434F1D006D43BB /* Character.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C1231E7C1D41AEA4001C7228 /* TexEngine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TexEngine.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1231E7F1D41AEA4001C7228 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C1231E7F1D41AEA4001C7228 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = TexEngine/AppDelegate.swift; sourceTree = "<group>"; };
 		C1231E861D41AEA4001C7228 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = TexEngine/Assets.xcassets; sourceTree = "<group>"; };
 		C1231E891D41AEA4001C7228 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1231E8B1D41AEA4001C7228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = TexEngine/Info.plist; sourceTree = "<group>"; };
 		C1231E911D41B092001C7228 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = ../MainViewController.swift; sourceTree = "<group>"; };
 		C1231E951D41E592001C7228 /* tester.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = tester.playground; sourceTree = "<group>"; };
+		C12AF23B1D433081006D43BB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C12AF23D1D433666006D43BB /* random tester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "random tester.swift"; path = "TexEngine/random tester.swift"; sourceTree = "<group>"; };
+		C12AF23F1D434069006D43BB /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		C12AF2411D434077006D43BB /* SceneList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneList.swift; sourceTree = "<group>"; };
+		C12AF2431D434F1D006D43BB /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,18 +47,18 @@
 		C1231E731D41AEA4001C7228 = {
 			isa = PBXGroup;
 			children = (
-				C1231E951D41E592001C7228 /* tester.playground */,
-				C1231E7D1D41AEA4001C7228 /* Products */,
-				C1231E861D41AEA4001C7228 /* Assets.xcassets */,
-				C1231E8B1D41AEA4001C7228 /* Info.plist */,
+				C12AF2451D434F3F006D43BB /* RANDOM */,
 				C1231E7E1D41AEA4001C7228 /* TexEngine */,
-				C1231E881D41AEA4001C7228 /* LaunchScreen.storyboard */,
+				C12AF2461D434F58006D43BB /* TEST STUFF LOL */,
 			);
 			sourceTree = "<group>";
 		};
 		C1231E7D1D41AEA4001C7228 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				C1231E8B1D41AEA4001C7228 /* Info.plist */,
+				C1231E881D41AEA4001C7228 /* LaunchScreen.storyboard */,
+				C1231E861D41AEA4001C7228 /* Assets.xcassets */,
 				C1231E7C1D41AEA4001C7228 /* TexEngine.app */,
 			);
 			name = Products;
@@ -57,10 +67,31 @@
 		C1231E7E1D41AEA4001C7228 /* TexEngine */ = {
 			isa = PBXGroup;
 			children = (
-				C1231E7F1D41AEA4001C7228 /* AppDelegate.swift */,
+				C12AF2431D434F1D006D43BB /* Character.swift */,
+				C12AF23F1D434069006D43BB /* GameData.swift */,
 				C1231E911D41B092001C7228 /* MainViewController.swift */,
+				C12AF2411D434077006D43BB /* SceneList.swift */,
 			);
 			path = TexEngine;
+			sourceTree = "<group>";
+		};
+		C12AF2451D434F3F006D43BB /* RANDOM */ = {
+			isa = PBXGroup;
+			children = (
+				C1231E7F1D41AEA4001C7228 /* AppDelegate.swift */,
+				C1231E7D1D41AEA4001C7228 /* Products */,
+				C12AF23B1D433081006D43BB /* Default-568h@2x.png */,
+			);
+			name = RANDOM;
+			sourceTree = "<group>";
+		};
+		C12AF2461D434F58006D43BB /* TEST STUFF LOL */ = {
+			isa = PBXGroup;
+			children = (
+				C12AF23D1D433666006D43BB /* random tester.swift */,
+				C1231E951D41E592001C7228 /* tester.playground */,
+			);
+			name = "TEST STUFF LOL";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +155,7 @@
 			files = (
 				C1231E8A1D41AEA4001C7228 /* LaunchScreen.storyboard in Resources */,
 				C1231E871D41AEA4001C7228 /* Assets.xcassets in Resources */,
+				C12AF23C1D433081006D43BB /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +167,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1231E931D41B092001C7228 /* MainViewController.swift in Sources */,
+				C12AF2401D434069006D43BB /* GameData.swift in Sources */,
 				C1231E801D41AEA4001C7228 /* AppDelegate.swift in Sources */,
+				C12AF2441D434F1D006D43BB /* Character.swift in Sources */,
+				C12AF23E1D433666006D43BB /* random tester.swift in Sources */,
+				C12AF2421D434077006D43BB /* SceneList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +323,7 @@
 				C1231E901D41AEA4001C7228 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
