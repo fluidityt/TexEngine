@@ -229,7 +229,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		
 		// let findNextScene = {}
 		
-		if(debugged == 45) { return } else {
+		if(debugged == 0) {			
 			switch(next_scene) {
 				
 			// scene 0
