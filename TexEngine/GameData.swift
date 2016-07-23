@@ -1,10 +1,5 @@
 //
 //  GameData.swift
-//  TexEngine
-//
-//  Created by Dude Guy on 7/23/16.
-//  Copyright © 2016 Dude Guy. All rights reserved.
-//
 
 import Foundation
 import UIKit
@@ -15,16 +10,16 @@ struct GameData {
 	
 	
 	/**  
-	SceneStuff holds things for SceneList mostly. I don't put them together because I'm not an OOP-head.
+	SceneStuff holds things for SceneList mostly. 
 	 */
-	struct SceneStuff {
+	struct SceneData {
 		var current_scene = -1
 		var scene_info = [-1: {}]
 		
 		
 		var next_scene = -1
 		var next_clip = -1
-	}; var scn = SceneStuff()
+	}; var scn = SceneData()
 	
 	
 	/** UX stuff holds buttons and shit so I don't have to */ 

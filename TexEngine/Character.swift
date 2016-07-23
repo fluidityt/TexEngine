@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+struct CharData {
+	
+	var my_chars		 =							[PossibleChars.Edye]	//check boolways
+	
+	mutating func filtrit(TYPZOR:PossibleChars) 	{
+		my_chars = my_chars.filter({$0 != $0}) }
+	
+	func checkEdye() 								{
+		my_chars.contains(.Edye) ? print("Oh shit it's Edye!") : print("nope")}
+}
+
+
+enum PossibleChars {	//master list
+	case Edye, Teyso }
+

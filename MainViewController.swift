@@ -1,25 +1,8 @@
 //
-//  ok.swift
-//  TexEngine
-//
-//  Created by Dude Guy on 7/21/16.
-//  Copyright © 2016 Dude Guy. All rights reserved.
-//
+//  mvc.swift
 
 import UIKit
 
-var debug_total = 0
-
-func debug(text:String,_ value:Any)
-{
-	debug_total += 1
-	print("\(debug_total) \(text) \(value)")
-}
-/** 
-- parameters: 
-   - cubes: The cubes available for allocation
-  - people: The people that require cubes 
-*/
 var firstrun = true
 
 
@@ -56,6 +39,35 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		return view
 	}() 	
 	
+	
+	
+	// button press
+	func buttonPressed() {
+		SL.doScene(with: 1)
+		
+	}
+	
+	func button2Pressed() {
+		SL.doScene(with: 2)
+	}
+	
+	
+	
+	// vdl
+	override func viewDidLoad() {
+		
+		super.viewDidLoad()
+		view.setNeedsUpdateConstraints()
+		view.addSubview(button2)
+		view.addSubview(GD.ux.label)
+		view.addSubview(button)
+		
+		
+		GD.scn.next_scene = 0
+		GD.scn.next_clip = 0
+		
+		button2.hidden = true
+	}
 	
 	
 	
@@ -184,58 +196,5 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		super.updateViewConstraints()
 		
 	}
-	
-	
-	// button press
-	func buttonPressed() {
-		SL.doscene()
-		
-	}
-	
-	func button2Pressed() {
-		SL.doscene()
-	}
-	
-	
-	
-	// vdl
-	override func viewDidLoad() {
-		
-		super.viewDidLoad()
-		view.setNeedsUpdateConstraints()
-		view.addSubview(button2)
-		view.addSubview(GD.ux.label)
-		view.addSubview(button)
-		
-		
-		GD.scn.next_scene = 0
-		GD.scn.next_clip = 0
-		
-		button2.hidden = true
-	}
-	
-	
-	
-	
-	
 }
-
-
-
-
-
-struct CharData {
-	
-	var my_chars		 =							[PossibleChars.Edye]	//check boolways
-	
-	mutating func filtrit(TYPZOR:PossibleChars) 	{
-		my_chars = my_chars.filter({$0 != $0}) }
-	
-	func checkEdye() 								{
-		my_chars.contains(.Edye) ? print("Oh shit it's Edye!") : print("nope")}
-}
-
-
-enum PossibleChars {	//master list
-	case Edye, Teyso }
 
