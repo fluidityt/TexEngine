@@ -195,57 +195,39 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		view.addSubview(label)
 		
 		
-		GD.scn_next_scene = 0
-		GD.scn_next_clip = 0
+		GD.scn.next_scene = 0
+		GD.scn.next_clip = 0
 		
 		
 	}
 	///DOSCENE¡///<##> 
 	func doscene() {
 		
-		//temp inits
-		var next_scene = GD.scn_next_scene
-		
-		var next_clip:Int
-			next_clip = GD.scn_next_clip
-		
-		var scene_info  = GD.scn_scene_info
-		
-		var debugged	= 0
-		
-		var current_scene = GD.scn_current_scene
-		
+		var temp = GD.scn
+					
 		
 		// internal funcs
 		func say(text: String){
 			print(text)
 			label.text = text}
 		
-		func setStage( scn:Int,_ clp:Int) 	{
-			next_scene = scn
-			next_clip  = clp		}
-		
-		func setClip(clp:Int)		{
-			next_clip = clp		}
-		
+				
 		// let findNextScene = {}
 		
-		// Load scene info if next_scene time
-		if(next_scene > current_scene)
-		{
-			say("\n Loading scene...")
-			// Switch next_scene, loading data into scene_info
-			switch(next_scene) {
+		if(temp.next_scene > temp.current_scene) {			
+			switch(temp.next_scene) {
 				
 			// scene 0
 			case 0:    
 				say("0 set")
-				scene_info = [
+				temp.scene_info = [
 					
 					// clip 0
 					0: {
 						say("clip 0 activated")
-						setStage(1, 0)
+						
+						temp.next_scene = 1
+						temp.next_clip = 0
 					}
 				]
 				
@@ -254,23 +236,24 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				
 				say("1 set")
 				
-				scene_info = [
+				temp.scene_info = [
 					
 					// clip 0
 					0: {
-						say("s1 c0 playing")
-						setClip(1)						
+						say("S1   C0  ")
+						
+						temp.next_clip = 1					
 					},
 					
 					// clip 1
 					1: {
-						setClip(0)
-						say("s1 c1 playing. ((nc = \(next_clip)))")
-						debugged += 1
+						say("  S1  C1 ")
 						
+						temp.next_clip = 0					
 					}
 					
 				]
+				
 				
 				
 			// scene error
@@ -278,36 +261,23 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				
 			}
 			
-			// For next entry 
-			// ONLY THING SO FAR IS LOADING INFO
-			// NO UNWRAPPING
-			GD.scn_current_scene = next_scene
-			GD.scn_scene_info 	=  scene_info
 			
 		}
-		else 
-		{
-			print("\n Scene isn't over yet..")
-		}
-		say("out of logic: ((nc = \(next_clip)))")
 		
+
 		
 		// Play next clip
-		scene_info[next_clip]!()
+		temp.scene_info[temp.next_clip]!()
 		
 		
-		// Update struct
-		GD.scn_next_scene = next_scene
-		GD.scn_next_clip  = next_clip
+		GD.scn = temp
+			
 		
-		
-		
-		
-		say("leaving doscene \(debugged)")
+		say("leaving doscene \n")
 		
 	}
-	
 }
+
 ///<##> Other stuff ////////////////////////////////////////////////
 // MARK: - OTHER -
 
@@ -329,14 +299,16 @@ struct CharData {
 
 struct GameData {
 	
-	var scn_current_scene = -1
-	var scn_scene_info = [-1: {}]
+	struct SceneStuff {
+		var current_scene = -1
+		var scene_info = [-1: {}]
+		
+		
+		var next_scene = -1
+		var next_clip = -1
+	}
 	
-	
-	var scn_next_scene = -1
-	var scn_next_clip = -1
-	
-	
+	var scn = SceneStuff()
 	
 	
 }; var GD = GameData()
