@@ -36,16 +36,26 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		               action: #selector(MainViewController.buttonPressed),
 		               forControlEvents: .TouchDown);
 		view.setTitle("Press Me!", forState: .Normal)
-		view.backgroundColor = UIColor.blueColor()
+		view.backgroundColor = UIColor.blackColor()
 		return view
 	}() 
 	
+	lazy var button2: UIButton! = {
+		let view = UIButton()
+		view.translatesAutoresizingMaskIntoConstraints = false
+		view.addTarget(self,
+		               action: #selector(MainViewController.button2Pressed),
+		               forControlEvents: .TouchDown);
+		view.setTitle("Press Me!22222", forState: .Normal)
+		view.backgroundColor = UIColor.blueColor()
+		return view
+	}() 	
 	lazy var label: UILabel! = {
 		let view = UILabel()
 		view.translatesAutoresizingMaskIntoConstraints = false
-		view.text = "HEY"
-		view.textAlignment = .Center
-		
+		view.text = "HEY \n     you \n        are not very nice"
+		//view.textAlignment = .Center
+		view.backgroundColor = UIColor.grayColor()
 		return view
 	}()
 	
@@ -99,7 +109,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				.active = true
 		}
 		
-		func buttonConstraints() {
+		func button2Constraints() {
 			// Center button in Page View
 			NSLayoutConstraint(
 				item: button,
@@ -133,7 +143,41 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				constant: 0.0)
 				.active = true
 		}
-		
+			func buttonConstraints() {
+			// Center button in Page View
+			NSLayoutConstraint(
+				item: button2,
+				attribute: .CenterX,
+				relatedBy: .Equal,
+				toItem: view,
+				attribute: .CenterX,
+				multiplier: 1.0,
+				constant: 0.0)
+				.active = true
+			
+			// Set Width to be 30% of the Page View Width
+			NSLayoutConstraint(
+				item: button2,
+				attribute: .Width,
+				relatedBy: .Equal,
+				toItem: view,
+				attribute: .Width,
+				multiplier: 0.3,
+				constant: 0.0)
+				.active = true
+			
+			// Set Y Position Relative to Bottom of Page View
+			NSLayoutConstraint(
+				item: button2,
+				attribute: .Bottom,
+				relatedBy: .Equal,
+				toItem: button,
+				attribute: .Bottom,
+				multiplier: 0.9,
+				constant: 0.0)
+				.active = true
+		}
+
 		func labelConstraints() {
 			// Center button in Page View
 			NSLayoutConstraint(
@@ -171,6 +215,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		
 		textFieldConstraints()
 		buttonConstraints()
+		button2Constraints()
 		labelConstraints()
 		
 		super.updateViewConstraints()
@@ -178,7 +223,16 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	func buttonPressed() {
-		doscene()
+		
+		button2.hidden = false
+		button.hidden = true
+		
+	}
+	
+	func button2Pressed() {
+		
+		button2.hidden = true
+		button.hidden = false
 	}
 	
 	
@@ -191,14 +245,15 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		view.addSubview(textField)
 		view.setNeedsUpdateConstraints()
 		view.addSubview(textField)
-		view.addSubview(button)
+		view.addSubview(button2)
 		view.addSubview(label)
-		
+				view.addSubview(button)
+
 		
 		GD.scn.next_scene = 0
 		GD.scn.next_clip = 0
 		
-		
+		button2.hidden = true
 	}
 	///DOSCENE¡///<##> 
 	func doscene() {
@@ -306,9 +361,7 @@ struct GameData {
 		
 		var next_scene = -1
 		var next_clip = -1
-	}
-	
-	var scn = SceneStuff()
+	}; var scn = SceneStuff()
 	
 	
 }; var GD = GameData()
