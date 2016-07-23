@@ -206,7 +206,8 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		//temp inits
 		var next_scene = GD.scn_next_scene
 		
-		var next_clip  = GD.scn_next_clip
+		var next_clip:Int
+			next_clip = GD.scn_next_clip
 		
 		var scene_info  = GD.scn_scene_info
 		
@@ -229,7 +230,11 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		
 		// let findNextScene = {}
 		
-		if(debugged == 0) {			
+		// Load scene info if next_scene time
+		if(next_scene > current_scene)
+		{
+			say("\n Loading scene...")
+			// Switch next_scene, loading data into scene_info
 			switch(next_scene) {
 				
 			// scene 0
@@ -279,24 +284,30 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 			GD.scn_current_scene = next_scene
 			GD.scn_scene_info 	=  scene_info
 			
-			
-			// Play next clip
-			scene_info[next_clip]!()
-			
-			
-			// Update struct
-			GD.scn_next_scene = next_scene
-			GD.scn_next_clip  = next_clip
-			
-			
-			
-			
-			say("leaving doscene \(debugged)")
-			
 		}
+		else 
+		{
+			print("\n Scene isn't over yet..")
+		}
+		say("out of logic: ((nc = \(next_clip)))")
+		
+		
+		// Play next clip
+		scene_info[next_clip]!()
+		
+		
+		// Update struct
+		GD.scn_next_scene = next_scene
+		GD.scn_next_clip  = next_clip
+		
+		
+		
+		
+		say("leaving doscene \(debugged)")
+		
 	}
+	
 }
-
 ///<##> Other stuff ////////////////////////////////////////////////
 // MARK: - OTHER -
 
