@@ -22,93 +22,49 @@ var firstrun = true
 // MARK: - MVC -
 class MainViewController: UIViewController, UITextFieldDelegate {
 	
-	lazy var textField: UITextField! = {
-		let view = UITextField()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.borderStyle = .RoundedRect
-		return view
-	}()
 	
+	// button 1
 	lazy var button: UIButton! = {
 		let view = UIButton()
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.addTarget(self,
 		               action: #selector(MainViewController.buttonPressed),
 		               forControlEvents: .TouchDown);
-		view.setTitle("Press Me!", forState: .Normal)
+		view.setTitle("Start Game", forState: .Normal)
 		view.backgroundColor = UIColor.blackColor()
 		return view
 	}() 
 	
+	// button 2
 	lazy var button2: UIButton! = {
 		let view = UIButton()
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.addTarget(self,
 		               action: #selector(MainViewController.button2Pressed),
 		               forControlEvents: .TouchDown);
-		view.setTitle("Press Me!22222", forState: .Normal)
+		view.setTitle("Retry", forState: .Normal)
 		view.backgroundColor = UIColor.blueColor()
 		return view
 	}() 	
+	
+	// label
 	lazy var label: UILabel! = {
 		let view = UILabel()
 		view.translatesAutoresizingMaskIntoConstraints = false
-		view.text = "HEY \n     you \n        are not very nice"
-		//view.textAlignment = .Center
-		view.backgroundColor = UIColor.grayColor()
+		view.text = "Super Fun Game!"
+		view.textAlignment = .Center
+		view.textColor = UIColor.whiteColor()
+		view.backgroundColor = UIColor.blackColor()
+	
+		view.adjustsFontSizeToFitWidth = true
+		
 		return view
 	}()
 	
 	
 	
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
-		
-		// Dismisses the Keyboard by making the text field resign
-		// first responder
-		textField.resignFirstResponder()
-		
-		// returns false. Instead of adding a line break, the text
-		// field resigns
-		return false
-	}
 	
 	override func updateViewConstraints() {
-		
-		
-		func textFieldConstraints() {
-			
-			NSLayoutConstraint(
-				item: textField,
-				attribute: .CenterX,
-				relatedBy: .Equal,
-				toItem: view,
-				attribute: .CenterX,
-				multiplier: 1.0,
-				constant: 0.0)
-				.active = true
-			
-			NSLayoutConstraint(
-				item: textField,
-				attribute: .Width,
-				relatedBy: .Equal,
-				toItem: view,
-				attribute: .Width,
-				multiplier: 0.8,
-				constant: 0.0)
-				.active = true
-			
-			
-			NSLayoutConstraint(
-				item: textField,
-				attribute: .Top,
-				relatedBy: .Equal,
-				toItem: view,
-				attribute: .Bottom,
-				multiplier: 0.1,
-				constant: 0.0)
-				.active = true
-		}
-		
 		func button2Constraints() {
 			// Center button in Page View
 			NSLayoutConstraint(
@@ -201,6 +157,18 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				constant: 0.0)
 				.active = true
 			
+			//hight
+			NSLayoutConstraint(
+				item: label,
+				attribute: .Height,
+				relatedBy: .Equal,
+				toItem: view,
+				attribute: .Height,
+				multiplier: 0.7,
+				constant: 0.0)
+				.active = true
+			
+		}
 			// Set Y Position Relative to Bottom of Page View
 			NSLayoutConstraint(
 				item: label,
@@ -208,12 +176,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 				relatedBy: .Equal,
 				toItem: view,
 				attribute: .CenterY,
-				multiplier: 1.0,
+				multiplier: 0.8,
 				constant: 0.0)
 				.active = true
-		}
 		
-		textFieldConstraints()
 		buttonConstraints()
 		button2Constraints()
 		labelConstraints()
@@ -226,13 +192,14 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		
 		button2.hidden = false
 		button.hidden = true
-		
+		label.text = "Hi"
 	}
 	
 	func button2Pressed() {
 		
 		button2.hidden = true
 		button.hidden = false
+		label.text = "Bye"
 	}
 	
 	
@@ -241,10 +208,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
-		
-		view.addSubview(textField)
 		view.setNeedsUpdateConstraints()
-		view.addSubview(textField)
 		view.addSubview(button2)
 		view.addSubview(label)
 				view.addSubview(button)
