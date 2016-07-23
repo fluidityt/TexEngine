@@ -229,70 +229,71 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		
 		// let findNextScene = {}
 		
-		switch(next_scene) {
-			
-		// scene 0
-		case 0:    
-			say("0 set")
-			scene_info = [
+		if(debugged == 45) { return } else {
+			switch(next_scene) {
 				
-				// clip 0
-				0: {
-					say("clip 0 activated")
-					setStage(1, 0)
-				}
-			]
-			
-		// scene 1
-		case 1:
-			
-			say("1 set")
-			
-			scene_info = [
-				
-				// clip 0
-				0: {
-					say("s1 c0 playing")
-					setClip(1)						
-				},
-				
-				// clip 1
-				1: {
-					setClip(0)
-					say("s1 c1 playing. ((nc = \(next_clip)))")
-					debugged += 1
+			// scene 0
+			case 0:    
+				say("0 set")
+				scene_info = [
 					
-				}
+					// clip 0
+					0: {
+						say("clip 0 activated")
+						setStage(1, 0)
+					}
+				]
 				
-			]
+			// scene 1
+			case 1:
+				
+				say("1 set")
+				
+				scene_info = [
+					
+					// clip 0
+					0: {
+						say("s1 c0 playing")
+						setClip(1)						
+					},
+					
+					// clip 1
+					1: {
+						setClip(0)
+						say("s1 c1 playing. ((nc = \(next_clip)))")
+						debugged += 1
+						
+					}
+					
+				]
+				
+				
+			// scene error
+			default: say("ERROR: no scene")	
+				
+			}
+			
+			// For next entry 
+			// ONLY THING SO FAR IS LOADING INFO
+			// NO UNWRAPPING
+			GD.scn_current_scene = next_scene
+			GD.scn_scene_info 	=  scene_info
 			
 			
-		// scene error
-		default: say("ERROR: no scene")	
+			// Play next clip
+			scene_info[next_clip]!()
+			
+			
+			// Update struct
+			GD.scn_next_scene = next_scene
+			GD.scn_next_clip  = next_clip
+			
+			
+			
+			
+			say("leaving doscene \(debugged)")
 			
 		}
-		
-		// For next entry 
-		// ONLY THING SO FAR IS LOADING INFO
-		// NO UNWRAPPING
-		GD.scn_current_scene = next_scene
-		GD.scn_scene_info 	=  scene_info
-		
-	
-		// Play next clip
-		scene_info[next_clip]!()
-
-		
-		// Update struct
-		GD.scn_next_scene = next_scene
-		GD.scn_next_clip  = next_clip
-		
-		
-		
-		
-		say("leaving doscene \(debugged)")
-		
-		
 	}
 }
 
