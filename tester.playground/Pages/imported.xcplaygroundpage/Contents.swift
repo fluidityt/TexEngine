@@ -17,6 +17,10 @@ import Foundation
     - TODO: implement inout/generics for local functions
     - TODO: switch items to LET
     
+- learn about literals
+
+	- learn about _
+	- learn guard / defer
     */
 
 // giveA(bomb, to: testy)
@@ -37,29 +41,64 @@ import Foundation
     let fun = 4
 	var cool = 5
 
-
-    func doBattle(pressed_button:Int)
+	// TODO: Add enemy?
+    func doBattle(pressed_button:Int) -> Bool
     {
-		/*
-		(enter: load variables)
-		- refresh variables
-		- update screen
-		- wait for input
+			/*
+			(enter: load variables)
+			- refresh variables
+			- update screen
+			- wait for input
 			- do logic
-		*/
+			*/
+
+		// Loop tester
+		cool += 1
+
+
+			var cp = Eidye
+
+			// End of doBattle returns this variable (breaking or staying in loop)
+			var
+				battle_finished			= false,
+				enHP					= Bug.hp,
+				enAP					= Bug.ap,
+				cpHP					= 60,
+				cpAP					= 25;
+
 
 		mwin("Welcome to the battle...")
-    }
+
+			// option 1, fight
+			func fight()
+			{
+
+			}
+
+			func useItem()
+			{
+
+			}
+
+		// Test breakout
+		if(cool == 10) { return true }
 
 
-doBattle(1)
+
+		// Return to exit / stay in outer loop
+		if(battle_finished == true)		{
+			return(true)				}
+		else							{
+			return (false)				}
 
 
+	}
 
 
-
-
-
+while false {
+	var funt = doBattle(1)
+	if funt == true{ break}
+}
 
 
 
