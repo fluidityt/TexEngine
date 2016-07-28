@@ -16,7 +16,6 @@
 		C12AF2401D434069006D43BB /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12AF23F1D434069006D43BB /* GameData.swift */; };
 		C12AF2421D434077006D43BB /* SceneList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12AF2411D434077006D43BB /* SceneList.swift */; };
 		C12AF2441D434F1D006D43BB /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12AF2431D434F1D006D43BB /* Character.swift */; };
-		C14C46E01D49ACCB0092801D /* CharItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14C46DF1D49ACCB0092801D /* CharItems.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,6 @@
 		C12AF23F1D434069006D43BB /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		C12AF2411D434077006D43BB /* SceneList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneList.swift; sourceTree = "<group>"; };
 		C12AF2431D434F1D006D43BB /* Character.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
-		C14C46DF1D49ACCB0092801D /* CharItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharItems.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				C12AF2431D434F1D006D43BB /* Character.swift */,
-				C14C46DF1D49ACCB0092801D /* CharItems.swift */,
 				C12AF23F1D434069006D43BB /* GameData.swift */,
 				C1231E911D41B092001C7228 /* MainViewController.swift */,
 				C12AF2411D434077006D43BB /* SceneList.swift */,
@@ -169,7 +166,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C14C46E01D49ACCB0092801D /* CharItems.swift in Sources */,
 				C1231E931D41B092001C7228 /* MainViewController.swift in Sources */,
 				C12AF2401D434069006D43BB /* GameData.swift in Sources */,
 				C1231E801D41AEA4001C7228 /* AppDelegate.swift in Sources */,
@@ -291,6 +287,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mycom.TexEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -305,6 +302,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mycom.TexEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

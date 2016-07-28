@@ -1,0 +1,1 @@
+var g = battle_stats()
