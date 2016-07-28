@@ -1,10 +1,10 @@
 import Foundation
 
-
+//<##>  MARK:  - GENERAL -
 	// ENUMS
    
     public enum 
-        e_Quantities { case some,alot,alittle,few, nada, many,very,somewhat}
+        e_Quantities { case some,alot,alittle,few, nada, many,very,somewhat, max}
                 public let
                    some                       = e_Quantities.some     ,
                    alot                       = e_Quantities.alot     ,
@@ -13,9 +13,11 @@ import Foundation
                    alittle                    = e_Quantities.alittle  ,
                    very                       = e_Quantities.very     ,
                    somewhat                   = e_Quantities.somewhat ,
-                   nada                       = e_Quantities.nada     
+                   nada                       = e_Quantities.nada	  ,
+				   max						  = e_Quantities.max
     ;
-    
+
+//<##>  MARK:  - CHARACTER -
     // character traits
     public enum
         e_PersonalityTraits{  case trustworthy, bloodthirsty, kind }
@@ -31,13 +33,7 @@ import Foundation
                         
     public enum e_Genders { case                    neutral, female, other, male }
                     
-    
-    // TODO: Migrate this later    
-    public enum
-        condition_list  {case   
-            normal, confused, poisoned }
-                
-    
+
     // Item Enums
     public enum
         e_item_type { case
@@ -60,20 +56,11 @@ import Foundation
                     ePotion                 = e_itm_names.potion
     ;
     
-    public struct
-        battle_stats {
-            public var                 
-                HP                            =   0           ,
-                MP                            =   0           ,
-                                
-                AP                            =   0           ,
-                DEF                           =   0           ,
-                                
-                condition                     =   condition_list.normal,
-                alive                         =   true        ,
-                                
-                equipment                     =   100         ,
-                items                         =   [100]       ;
+
+
+    // TODO: Migrate this later    
+    public enum
+        condition_list  {case   
+            normal, confused, poisoned }
                 
-        }
-    ;
+

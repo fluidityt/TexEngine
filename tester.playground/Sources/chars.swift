@@ -12,67 +12,96 @@ import Foundation
     
         var
             // Generals             
-            name:String                      = ""            ,
+            name:String                      = "narrator"    ,
             nickname:String                  = ""            ,
             gender:e_Genders                 = .neutral      ,
             age                              = 0             ,
             race:e_Races                     = .nada         ,
-                    
-            // Personls             
+			graphics:String					 = "graphics|"	 ,
+			bat_stats						 = battle_stats(),
+
+			// Personls
             trust:Int?                       = 0             ,
-            trust_table                      :
-                [String: Bool]               =
-                    [:]                                      ,
+			trust_table:[String: Bool]       = [:]           ,
                             
-            default_char_traits              = [
+            trait_table		                 = [
                 
                 bloodthirstiness   :   nada     ,
                 trustworthiness    :   nada     ,
                 kindness           :   nada     ,
-        ]                                       ;
+        										]
+		;
+	
+		var char_battle_inventory:[e_itm_names:Int]? = [:]
+            { didSet { print(char_battle_inventory!) } }
      
         // UI stuff
         var message_font        = 0
-      
+
+		public struct
+			battle_stats {
+				public var             
+					HP                       =   0           ,
+					MP                       =   0           ,
+									
+					AP                       =   0           ,
+					DEF                      =   0           ,
+									
+					condition                =   condition_list.normal,
+					alive                    =   true        ,
+									
+					equipment                =   100         ,
+					items                    =   [100]       ;
+					
+		}
+
         // Initialize
         init()
         {
             Character.head_count += 1
             trust_table["nobody"] = true
         }
+
     }//EOC
 
+//<##>  MARK:  - custom chars -
+
     /** each character has there arwn shit they have to need */
-   public class eidye : Character {
-        // Special var for MC
-        var party_list = Set<String>()
-      
-        override init() 
-        {
-            super.init()
-            age = 24
-            race = .human
-            gender = .male
-            name = "Eidye"
-        
-            // Trusty heroes :)
-            //addTrait(.trustworthy) 
-            trust = 100
-        }
-    }
-    
+	public class eidye : Character {
+		// Special var for MC
+		var party_list = Set<String>()
+
+		override init()
+		{
+			super.init()
+
+			// Basic inits
+			age								= 24
+			race							= .human
+			gender							= .male
+			name							= "Eidye"
+			graphics						= "Eidye.graphics"
+			trust 							= 100
+			//bat_stats		= bs.init()
+
+			// Tables
+			trait_table[trustworthiness]	= max
+			trust_table						= ["Mris": true]
+
+		}
+	}
+
    public class mris  : Character {
-        override init()    
+        override init()
         {
             super.init()
             
-            // Basic inits
-            age = 24
-            race = .human
-            gender = .female
-            name = "Mris"
-            trust = 50
-           // addTrait(.neutral)
+            age			= 24
+            race		= .human
+            gender		= .female
+            name		= "Mris"
+            trust		= 50
+
             
             // She trusts Eidye
             trust_table = ["Eidye": true]
@@ -86,16 +115,16 @@ import Foundation
         override init() 
         { 
             super.init()
-            
-            age = 24
-            race = .human
+
+            age          = 24
+            race         = .human
             
             // She's a girl
-            gender = .female
+            gender       = .female
             
-            name = "Froyn"
-            trust = 0 
-            
+            name         = "Froyn"
+            trust        = 0
+
             // cuz she's the villain
          
             // an evil font
@@ -128,4 +157,47 @@ import Foundation
         :
             print(first.name + " doesn't trust " + second.name)
          
-    } 
+    }
+
+	/*  FROM FUNCTIONS.SWIFT:::
+
+	public func giveA( which:Item, to this:Character)
+	{   log("trying to give \(which) to \(this)")
+		let itemname = which.name
+
+		// FIXME: this will crash if we don't initialize. Make it an if let ? statement
+		// TODO: add how many to sell, or do a for! loop in the market UI calling this
+		// .. check if player has ANY in stock
+		if let currentamount = this.char_battle_inventory?[itemname]
+		{
+			// If player has max, do nothing
+			if currentamount >= which.max_quantity  {
+				log("Already at max")                  }
+			else                                                          {
+				this.char_battle_inventory![itemname] = currentamount + 1 }
+
+		}
+			//  If player has NONE in stock, sell one
+		else                                          {
+			this.char_battle_inventory![itemname] = 1 }
+
+	}
+
+	public func takeA( which:Item, from this:Character)
+	{   log("trying to take \(which) from \(this)")
+		let itemname = which.name
+
+		if let currentamount = this.char_battle_inventory?[itemname]
+		{
+			// If player has max, do nothing
+			if currentamount <= 0                       {
+				log("You have none!")                  }
+			else                                                          {
+				this.char_battle_inventory![itemname] = currentamount - 1 }
+		}
+			//  If player has NONE in stock, sell one
+		else                                          {
+			log("You have none!")
+		}
+	}
+	*/

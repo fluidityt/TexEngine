@@ -5,9 +5,9 @@ import Foundation
 import UIKit
 
 
-/** Game Data holds all my shit for all my other shit so they can shit on each other without getting any of the crap on me */
+/** Game Data holds all my shit for all my other shit so they can shit on each other without
+// getting any of the crap on me */
 struct GameData {
-
 
 	/**
 	SceneStuff holds things for SceneList mostly.

@@ -25,8 +25,8 @@ public class scene {
                                     
                                     1: {
                                         
-                                        mwin("The night was dark")
-                                        mwin("Things are bad,", said: Eidye)
+                                       // mwin("The night was dark")
+                                        //mwin("Things are bad,", said: Eidye)
                                     }
                                     
                                     ]

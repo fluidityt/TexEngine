@@ -34,6 +34,9 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
+		
+		sayHi()
+
 		view.setNeedsUpdateConstraints()
 		view.addSubview(GD.ux.button_2)
 		view.addSubview(GD.ux.label)

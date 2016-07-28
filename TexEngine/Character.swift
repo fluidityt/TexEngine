@@ -23,3 +23,7 @@ struct CharData {
 enum PossibleChars {	//master list
 	case Edye, Teyso }
 
+public func sayHi()
+{
+print("Hi tharr wurldz!")
+}
