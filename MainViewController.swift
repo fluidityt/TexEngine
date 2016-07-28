@@ -15,34 +15,11 @@ var firstrun = true
 class MainViewController: UIViewController, UITextFieldDelegate {
 	
 	
-	// button 1
-	lazy var button: UIButton! = {
-		let view = UIButton()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.addTarget(self,
-		               action: #selector(MainViewController.buttonPressed),
-		               forControlEvents: .TouchDown);
-		view.setTitle("Start Game", forState: .Normal)
-		view.backgroundColor = UIColor.blackColor()
-		return view
-	}() 
-	
-	// button 2
-	lazy var button2: UIButton! = {
-		let view = UIButton()
-		view.translatesAutoresizingMaskIntoConstraints = false
-		view.addTarget(self,
-		               action: #selector(MainViewController.button2Pressed),
-		               forControlEvents: .TouchDown);
-		view.setTitle("Retry", forState: .Normal)
-		view.backgroundColor = UIColor.blueColor()
-		return view
-	}() 	
 	
 	
 	
 	// button press
-	func buttonPressed() {
+	func button1Pressed() {
 		SL.doScene(with: 1)
 		
 	}
@@ -58,15 +35,15 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		
 		super.viewDidLoad()
 		view.setNeedsUpdateConstraints()
-		view.addSubview(button2)
+		view.addSubview(GD.ux.button_2)
 		view.addSubview(GD.ux.label)
-		view.addSubview(button)
+		view.addSubview(GD.ux.button_1)
 		
 		
 		GD.scn.next_scene = 0
 		GD.scn.next_clip = 0
 		
-		button2.hidden = true
+		GD.ux.button_2.hidden = true
 	}
 	
 	
@@ -77,7 +54,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		func button2Constraints() {
 			// Center button in Page View
 			NSLayoutConstraint(
-				item: button,
+				item: GD.ux.button_2,
 				attribute: .CenterX,
 				relatedBy: .Equal,
 				toItem: view,
@@ -88,7 +65,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 			
 			// Set Width to be 30% of the Page View Width
 			NSLayoutConstraint(
-				item: button,
+				item: GD.ux.button_2,
 				attribute: .Width,
 				relatedBy: .Equal,
 				toItem: view,
@@ -99,7 +76,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 			
 			// Set Y Position Relative to Bottom of Page View
 			NSLayoutConstraint(
-				item: button,
+				item: GD.ux.button_2,
 				attribute: .Bottom,
 				relatedBy: .Equal,
 				toItem: view,
@@ -111,7 +88,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 		func buttonConstraints() {
 			// Center button in Page View
 			NSLayoutConstraint(
-				item: button2,
+				item: GD.ux.button_1,
 				attribute: .CenterX,
 				relatedBy: .Equal,
 				toItem: view,
@@ -122,7 +99,7 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 			
 			// Set Width to be 30% of the Page View Width
 			NSLayoutConstraint(
-				item: button2,
+				item:  GD.ux.button_1,
 				attribute: .Width,
 				relatedBy: .Equal,
 				toItem: view,
@@ -133,10 +110,10 @@ class MainViewController: UIViewController, UITextFieldDelegate {
 			
 			// Set Y Position Relative to Bottom of Page View
 			NSLayoutConstraint(
-				item: button2,
+				item:  GD.ux.button_1,
 				attribute: .Bottom,
 				relatedBy: .Equal,
-				toItem: button,
+				toItem:  GD.ux.button_2,
 				attribute: .Bottom,
 				multiplier: 0.9,
 				constant: 0.0)
