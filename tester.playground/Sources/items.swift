@@ -3,10 +3,11 @@ import Foundation
 // <##> MARK:  - items -
 
 // For using and equipping
+
 public class
 	Item {
 		// Default item values
-		var
+		public var
 		name                        = e_itm_names.blank     ,
 		max_quantity                = 0                     ,
 		type                        = e_item_type.blank     ,
@@ -14,6 +15,8 @@ public class
 		icon                        = "blank.png"           ,
 		description                 = "a blank item"
 		;
+
+	public init(){}
 
 	}
 ;
@@ -36,14 +39,14 @@ public class
 
 public class
 	Usable : Item {
-		var
+		public var
 		use                          = {}                    ,
 		boost                        = ["HP": 0]             ,
 		battle_sfx                   = "blank.wav"           ,
-		battle_anim                  = "blank.anim"
+		battle_anim                  = "blank.anim"		     
 		;
 
-		override init()                  { super.init()
+		public override init()                  { super.init()
 			max_quantity                 = 10
 			type                         = e_item_type.battle
 		}

@@ -9,7 +9,7 @@ import Foundation
    public class Character
     {
         static var head_count   = 0
-    
+
         var
             // Generals             
             name:String                      = "narrator"    ,
@@ -70,6 +70,7 @@ import Foundation
 	public class eidye : Character {
 		// Special var for MC
 		var party_list = Set<String>()
+		public var hp = 60, ap = 25;
 
 		override init()
 		{
@@ -81,7 +82,9 @@ import Foundation
 			gender							= .male
 			name							= "Eidye"
 			graphics						= "Eidye.graphics"
-			trust 							= 100
+			trust 							= 100;
+
+
 			//bat_stats		= bs.init()
 
 			// Tables

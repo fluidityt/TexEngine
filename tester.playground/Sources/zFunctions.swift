@@ -83,3 +83,49 @@ import Foundation
 			log("You have none!")
 		}
 	}
+
+
+	public func useA( which:Item, on this:Character)
+	{   log("trying to give \(which) to \(this)")
+		let itemname = which.name
+
+		// FIXME: this will crash if we don't initialize. Make it an if let ? statement
+		// TODO: add how many to sell, or do a for! loop in the market UI calling this
+		// .. check if player has ANY in stock
+		if let currentamount = this.char_battle_inventory?[itemname]
+		{
+			// If player has max, do nothing
+			if currentamount >= which.max_quantity  {
+				log("Already at max")                  }
+			else                                                          {
+				this.char_battle_inventory![itemname] = currentamount + 1 }
+
+		}
+		//  If player has NONE in stock, sell one
+		else                                          {
+			this.char_battle_inventory![itemname] = 1 }
+
+	}
+
+public func use( this:Character, held:Item, on _this:enemy)
+{
+	let itemname = held.name
+
+	// FIXME: this will crash if we don't initialize. Make it an if let ? statement
+	// TODO: add how many to sell, or do a for! loop in the market UI calling this
+	// .. check if player has ANY in stock
+	if let currentamount = this.char_battle_inventory?[itemname]
+	{
+		//this shouldn't even exist...
+		 if currentamount == 0 {
+			log("cant use item")                  }
+		else                                                          {
+			print("used item...")
+			this.char_battle_inventory![itemname] = currentamount - 1 }
+
+	}
+
+}
+
+
+
